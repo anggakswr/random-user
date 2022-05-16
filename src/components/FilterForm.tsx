@@ -19,6 +19,7 @@ const FilterForm = () => {
 
   const resetFilter = () => {
     setKeyword("");
+    setGender("all");
     setSearchParams({});
   };
 
