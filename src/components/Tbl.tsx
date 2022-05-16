@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { useSearchParams } from "react-router-dom";
 import styles from "./Tbl.module.css";
+import Skeleton from "./tbl/Skeleton";
 import Pagination from "./tbl/Pagination";
 
 type LoginType = {
@@ -33,32 +34,47 @@ type TblType = {
 const Tbl = ({ loading, users }: TblType) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const filterGender = () => {
+  // const filterGender = () => {
+  //   const page = searchParams.get("page") || "1";
+  //   const keyword = searchParams.get("keyword") || "";
+  //   const genderParam = searchParams.get("gender") || "";
+
+  //   let gender = genderParam;
+
+  //   switch (genderParam) {
+  //     case "":
+  //       gender = "male";
+  //       break;
+
+  //     case "male":
+  //       gender = "female";
+  //       break;
+
+  //     case "female":
+  //       gender = "";
+  //       break;
+
+  //     default:
+  //       gender = "male";
+  //       break;
+  //   }
+
+  //   setSearchParams({ keyword, gender, page });
+  // };
+
+  const sortBy = (sortBy: "name" | "email" | "gender" | "registered") => {
     const page = searchParams.get("page") || "1";
     const keyword = searchParams.get("keyword") || "";
-    const genderParam = searchParams.get("gender") || "";
+    const gender = searchParams.get("gender") || "all";
+    const sortOrder = searchParams.get("sortOrder") || "";
 
-    let gender = genderParam;
-
-    switch (genderParam) {
-      case "":
-        gender = "male";
-        break;
-
-      case "male":
-        gender = "female";
-        break;
-
-      case "female":
-        gender = "";
-        break;
-
-      default:
-        gender = "male";
-        break;
-    }
-
-    setSearchParams({ keyword, gender, page });
+    setSearchParams({
+      page,
+      keyword,
+      gender,
+      sortBy,
+      sortOrder: sortOrder === "ascend" ? "descend" : "ascend",
+    });
   };
 
   return (
@@ -72,37 +88,32 @@ const Tbl = ({ loading, users }: TblType) => {
       >
         <b className="p-4">Username</b>
 
-        <button className="box-between p-4">
+        <button className="box-between p-4" onClick={() => sortBy("name")}>
           <b>Name</b>
           <span> &darr;</span>
         </button>
 
-        <button className="box-between p-4">
+        <button className="box-between p-4" onClick={() => sortBy("email")}>
           <b>Email</b>
           <span> &darr;</span>
         </button>
 
-        <button className="box-between p-4" onClick={filterGender}>
+        <button className="box-between p-4" onClick={() => sortBy("gender")}>
           <b>Gender</b>
           <span> &darr;</span>
         </button>
 
-        <button className="box-between p-4">
+        <button
+          className="box-between p-4"
+          onClick={() => sortBy("registered")}
+        >
           <b>Registered Date</b>
           <span> &darr;</span>
         </button>
       </div>
 
-      {/* if loading */}
-      {loading && (
-        <div className="grid grid-cols-5 gap-x-4 border-b-2 border-gray-300">
-          <span className="m-4 p-4 bg-gray-300 animate-pulse" />
-          <span className="m-4 p-4 bg-gray-300 animate-pulse" />
-          <span className="m-4 p-4 bg-gray-300 animate-pulse" />
-          <span className="m-4 p-4 bg-gray-300 animate-pulse" />
-          <span className="m-4 p-4 bg-gray-300 animate-pulse" />
-        </div>
-      )}
+      {/* skeleton loading */}
+      {loading && <Skeleton />}
 
       {/* tbl rows */}
       {!loading &&

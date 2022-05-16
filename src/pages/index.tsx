@@ -13,6 +13,8 @@ const Index = () => {
   const keyword = searchParams.get("keyword");
   const gender = searchParams.get("gender");
   const page = searchParams.get("page") || 1;
+  const sortBy = searchParams.get("sortBy");
+  const sortOrder = searchParams.get("sortOrder");
 
   useEffect(() => {
     const getUsers = async () => {
@@ -28,6 +30,8 @@ const Index = () => {
             results: 10,
             keyword,
             gender: gender !== "all" ? gender : "",
+            sortBy,
+            sortOrder,
           },
         });
 
@@ -41,7 +45,7 @@ const Index = () => {
     };
 
     getUsers();
-  }, [keyword, gender, page]);
+  }, [keyword, gender, page, sortBy, sortOrder]);
 
   return (
     <main className="p-8">
