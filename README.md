@@ -1,6 +1,6 @@
 # Data Table App
 
-Just a simple data table app that shows a table of data where user can paginate the data, search, and filter data from the dummy API in https://randomuser.me/documentation
+Simple data table app that shows a table of data where user can paginate, search, and filter data from the dummy API in https://randomuser.me/documentation
 
 ## Running the App
 
@@ -8,15 +8,15 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in the interactive watch mode.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
+Builds the app for production to the `build` folder.
 
 ## Learn More
 
