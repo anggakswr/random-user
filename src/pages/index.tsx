@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import FilterForm from "../components/FilterForm";
 import Tbl from "../components/Tbl";
 
@@ -8,6 +8,11 @@ const Index = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const [searchParams] = useSearchParams();
+
+  const keyword = searchParams.get("keyword");
+  const gender = searchParams.get("gender");
+  const page = searchParams.get("page") || 1;
 
   useEffect(() => {
     const getUsers = async () => {
@@ -18,9 +23,11 @@ const Index = () => {
       try {
         const res = await axios.get("/", {
           params: {
-            page: 1,
+            page,
             pageSize: 1,
             results: 10,
+            keyword,
+            gender: gender !== "all" ? gender : "",
           },
         });
 
@@ -34,7 +41,7 @@ const Index = () => {
     };
 
     getUsers();
-  }, []);
+  }, [keyword, gender, page]);
 
   return (
     <main className="p-8">

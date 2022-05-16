@@ -1,13 +1,14 @@
 import dayjs from "dayjs";
+import styles from "./Tbl.module.css";
 
 type LoginType = {
-  uuid: String;
-  username: String;
+  uuid: string;
+  username: string;
 };
 
 type NameType = {
-  first: String;
-  last: String;
+  first: string;
+  last: string;
 };
 
 type RegisteredType = {
@@ -17,8 +18,8 @@ type RegisteredType = {
 type UserType = {
   login: LoginType;
   name: NameType;
-  email: String;
-  gender: String;
+  email: string;
+  gender: string;
   registered: RegisteredType;
 };
 
@@ -30,7 +31,12 @@ const Tbl = ({ users }: TblType) => {
   return (
     <section className="mt-8">
       {/* tbl header */}
-      <div className="grid grid-cols-5 gap-x-4 bg-gray-200 border-b-2 border-gray-300">
+      <div
+        className={
+          styles.tblHeader +
+          " grid grid-cols-5 gap-x-4 bg-gray-200 border-b-2 border-gray-300"
+        }
+      >
         <b className="p-4">Username</b>
 
         <button className="box-between p-4">

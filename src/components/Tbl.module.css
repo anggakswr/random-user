@@ -1,0 +1,3 @@
+.tblHeader button:hover > span {
+  @apply text-gray-500;
+}
