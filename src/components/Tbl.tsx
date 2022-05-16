@@ -34,34 +34,6 @@ type TblType = {
 const Tbl = ({ loading, users }: TblType) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // const filterGender = () => {
-  //   const page = searchParams.get("page") || "1";
-  //   const keyword = searchParams.get("keyword") || "";
-  //   const genderParam = searchParams.get("gender") || "";
-
-  //   let gender = genderParam;
-
-  //   switch (genderParam) {
-  //     case "":
-  //       gender = "male";
-  //       break;
-
-  //     case "male":
-  //       gender = "female";
-  //       break;
-
-  //     case "female":
-  //       gender = "";
-  //       break;
-
-  //     default:
-  //       gender = "male";
-  //       break;
-  //   }
-
-  //   setSearchParams({ keyword, gender, page });
-  // };
-
   const sortBy = (sortBy: "name" | "email" | "gender" | "registered") => {
     const page = searchParams.get("page") || "1";
     const keyword = searchParams.get("keyword") || "";
@@ -121,6 +93,7 @@ const Tbl = ({ loading, users }: TblType) => {
           <div
             key={"user-" + user.login.uuid + index}
             className="grid grid-cols-5 gap-x-4 border-b-2 border-gray-300"
+            data-testid="tbl-row"
           >
             <span className="p-4 break-words">{user.login.username}</span>
             <span className="p-4 break-words">

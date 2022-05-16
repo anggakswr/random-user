@@ -5,6 +5,8 @@ const Pagination = () => {
   const page = searchParams.get("page") || "1";
 
   const navigate = (num: number) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     const keyword = searchParams.get("keyword") || "";
     const gender = searchParams.get("gender") || "all";
 
