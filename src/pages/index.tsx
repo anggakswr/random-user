@@ -59,8 +59,10 @@ const Index = () => {
       {/* error message */}
       {error && <p className="text-red-500"> {error} </p>}
 
+      <hr className="mt-8" />
+
       {/* tbl */}
-      {!loading && users.length ? <Tbl users={users} /> : null}
+      {<Tbl loading={loading} users={users} />}
     </main>
   );
 };

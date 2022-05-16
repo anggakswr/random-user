@@ -68,7 +68,7 @@ const FilterForm = () => {
 
       {/* reset btn */}
       <button
-        className="py-2 px-6 border border-gray-400 rounded h-[42px] hover:bg-gray-200"
+        className="py-2 px-6 border border-gray-400 rounded h-[42px]"
         onClick={resetFilter}
       >
         Reset Filter
